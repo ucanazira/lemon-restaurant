@@ -1,0 +1,599 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* NAVBAR */
+header {
+  background: #fff;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* ✅ tambahkan baris ini */
+  z-index: 1000; /* ✅ menu di atas hero */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-family: "Markazi Text", serif;
+  font-size: 1.1rem;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* 🔥 efek garis kuning saat hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #f4ce14;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* ===== HAMBURGER MENU (Mobile Navbar) ===== */
+.menu-toggle {
+  display: none;
+  font-size: 1.6rem;
+  color: #333;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 5%;
+    background: #fff;
+    flex-direction: column;
+    width: 200px;
+    text-align: left;
+    border-radius: 10px;
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    display: none; /* default tersembunyi */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  /* Saat diklik (class "show" aktif) */
+  .nav-links.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tampilkan tombol hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Link di menu mobile */
+  .nav-links a {
+    color: #222;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  /* Hover garis kuning tetap aktif di mode mobile */
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #f4ce14;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+}
+
+/* HERO SECTION */
+.hero {
+  background-color: #495e57;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 10%; /* lebih kecil dari sebelumnya */
+  flex-wrap: wrap;
+  position: relative;
+  overflow: visible;
+  min-height: 220px; /* tinggi lebih proporsional */
+  margin-bottom: 3rem; /* ✅ tambahkan jarak antar section */
+}
+
+.hero-text {
+  flex: 1 1 380px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem; /* jarak antar elemen di dalam teks */
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin-bottom: 0.2rem; /* dikurangi supaya lebih rapat dengan paragraf */
+  font-family: "Markazi Text", serif;
+}
+
+.hero h1 span {
+  color: #f4ce14;
+}
+
+.hero p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 0.6rem; /* lebih dekat ke tombol */
+  color: #edefee;
+}
+
+.btn {
+  background: #f4ce14;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover {
+  background: #ffda1f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- GAMBAR HERO --- */
+.hero-img {
+  flex: 1 1 280px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-img img {
+  width: 290px;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: 55px; /* efek keluar dari background hijau */
+  z-index: 2;
+  background: white;
+}
+
+/* transisi halus antara hijau dan section berikutnya */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  background: linear-gradient(to bottom, #495e57 70%, transparent);
+  z-index: 1;
+}
+
+/* RESPONSIVE HERO */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem 5%;
+  }
+
+  .hero-text {
+    align-items: center;
+    gap: 0.3rem; /* jarak lebih rapat juga di mobile */
+  }
+
+  .btn {
+    align-self: center;
+  }
+
+  .hero-img {
+    display: none;
+  }
+
+  .hero-img img {
+    top: 40px;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+}
+
+/* SPECIALS */
+.specials {
+  padding: 3rem 0;
+  margin-bottom: 6rem; /* ✅ jarak lebih luas ke section berikutnya */
+}
+
+.specials-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Markazi Text", serif;
+  font-size: 1.5rem;
+}
+
+.btn-outline {
+  background: #f4ce14;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline:hover {
+  background: #ffda1f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+/* --- ORDER DELIVERY LINK STYLING --- */
+.card-content a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: #000; /* warna hitam */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.card-content a i {
+  font-size: 1rem;
+  color: #000;
+  transition: transform 0.3s ease;
+}
+
+.card-content a:hover {
+  color: #495e57; /* sedikit abu hijau saat hover */
+  transform: translateY(-2px);
+}
+
+.card-content a:hover i {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  background: #fff5f2;
+  padding: 5rem 0;
+  text-align: center;
+  margin-bottom: 6rem; /* ✅ jarak lebih luas ke section berikutnya */
+}
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.testi {
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ABOUT */
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rem;
+  padding: 2rem 0;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1 1 300px;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-family: "Markazi Text", serif;
+  margin-bottom: 1rem;
+}
+
+.about-text h2 span {
+  display: block;
+  color: #f4ce14;
+  font-size: 2rem;
+}
+
+.about-images {
+  flex: 1 1 300px;
+  position: relative; /* penting untuk positioning absolute anak */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.about-images img {
+  width: 75%;
+  border-radius: 12px;
+  object-fit: cover;
+  position: absolute;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* Gambar pertama (belakang) */
+.about-images img:first-child {
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  transform: rotate(-4deg);
+}
+
+/* Gambar kedua (depan) */
+.about-images img:last-child {
+  top: -20px;
+  right: 20px;
+  z-index: 2;
+  transform: rotate(3deg);
+}
+
+/* Efek hover lembut */
+.about-images img:hover {
+  transform: scale(1.03);
+  z-index: 3;
+}
+
+/* FOOTER */
+footer {
+  background: #edefee;
+  color: rgb(0, 0, 0);
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  text-align: left;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* =====================
+   FOOTER RESPONSIVE IMPROVEMENT
+   ===================== */
+
+footer {
+  background: #edefee;
+  color: #000;
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Logo footer */
+.footer-col img {
+  width: 140px;
+}
+
+/* Judul kolom */
+.footer-col h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #f4ce14;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* Daftar link/footer item */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col li {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-col li:hover {
+  color: #495e57;
+}
+
+/* Copyright */
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* =====================
+   MOBILE FOOTER STYLING
+   ===================== */
+@media (max-width: 768px) {
+  .footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-col {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 1.5rem;
+  }
+
+  .footer-col:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .footer-col img {
+    margin: 0 auto 0.8rem;
+  }
+
+  .footer-col h4::after {
+    margin: 0.5rem auto 0;
+  }
+
+  .footer-col ul {
+    padding: 0;
+  }
+
+  .footer-col li {
+    margin: 0.4rem 0;
+  }
+
+  footer {
+    padding: 2.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-col h4 {
+    font-size: 1rem;
+  }
+
+  .footer-col li {
+    font-size: 0.9rem;
+  }
+
+  .footer-col img {
+    width: 120px;
+  }
+}
